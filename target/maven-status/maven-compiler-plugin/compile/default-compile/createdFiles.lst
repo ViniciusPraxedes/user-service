@@ -1,0 +1,17 @@
+com\example\userservice\config\OpenApiConfiguration.class
+com\example\userservice\model\RegisterResponse$RegisterResponseBuilder.class
+com\example\userservice\model\Role.class
+com\example\userservice\model\User.class
+com\example\userservice\config\SecurityConfig.class
+com\example\userservice\UserServiceApplication.class
+com\example\userservice\controller\AuthenticationController.class
+com\example\userservice\service\AuthenticationService.class
+com\example\userservice\model\LoginRequest.class
+com\example\userservice\handler\ErrorObject.class
+com\example\userservice\model\RegisterResponse.class
+com\example\userservice\service\JwtService.class
+com\example\userservice\model\User$UserBuilder.class
+com\example\userservice\handler\ExceptionMessage.class
+com\example\userservice\repository\UserRepository.class
+com\example\userservice\handler\GlobalExceptionHandler.class
+com\example\userservice\model\RegisterRequest.class
