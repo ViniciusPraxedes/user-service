@@ -4,7 +4,7 @@ COPY pom.xml /app
 RUN mvn dependency:resolve
 COPY . /app
 RUN mvn clean
-RUN mvn package -DskipTests
+RUN mvn package
 
 
 FROM eclipse-temurin:17.0.4.1_1-jre
