@@ -1,5 +1,6 @@
 package com.example.userservice.controller;
 
+import com.example.userservice.model.LoginResponse;
 import com.example.userservice.model.RegisterResponse;
 import com.example.userservice.service.AuthenticationService;
 import com.example.userservice.model.LoginRequest;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-//@CrossOrigin("*")
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
@@ -45,7 +45,7 @@ public class AuthenticationController {
             @ApiResponse(responseCode = "404", description = "The resource you were trying to reach is not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "The code is broken", content = @Content)})
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody LoginRequest body){
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest body){
         return new ResponseEntity<>(authenticationService.login(body), HttpStatus.OK);
     }
 

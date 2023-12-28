@@ -47,7 +47,6 @@ public class AuthenticationService {
             userRepository.save(user);
 
             RegisterResponse response = RegisterResponse.builder()
-                    .userId(user.getId())
                     .firstname(user.getFirstname())
                     .lastname(user.getLastname())
                     .email(user.getEmail())
@@ -63,7 +62,7 @@ public class AuthenticationService {
         }
     }
 
-    public String login(LoginRequest body){
+    public LoginResponse login(LoginRequest body){
 
         //Checks if user exists in the database and if the password matches
         if (userRepository.findByEmail(body.getEmail()).isPresent() && passwordEncoder.matches(body.getPassword(), userRepository.findByEmail(body.getEmail()).get().getPassword())){
@@ -77,8 +76,21 @@ public class AuthenticationService {
             //Generates jwt token
             String jwt = jwtService.generateTokenWithExtraClaims(extraClaims,userRepository.findByEmail(body.getEmail()).get());
 
-            //Return jwt token and status code 200
-            return "Token is valid for 1 hour: "+jwt;
+            //Create response
+            LoginResponse response = LoginResponse.builder()
+                    .jwtToken(jwt)
+                    .phoneNumber(userRepository.findByEmail(body.getEmail()).get().getPhoneNumber())
+                    .firstname(userRepository.findByEmail(body.getEmail()).get().getFirstname())
+                    .lastname(userRepository.findByEmail(body.getEmail()).get().getLastname())
+                    .email(body.getEmail())
+                    .address(userRepository.findByEmail(body.getEmail()).get().getAddress())
+                    .postcode(userRepository.findByEmail(body.getEmail()).get().getPostcode())
+                    .city(userRepository.findByEmail(body.getEmail()).get().getCity())
+                    .role(userRepository.findByEmail(body.getEmail()).get().getRole())
+                    .build();
+
+            //Return response and status code 200
+            return response;
 
         }else {
             throw new IllegalStateException("User not found");
