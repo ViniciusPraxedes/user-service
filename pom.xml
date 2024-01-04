@@ -100,11 +100,12 @@
 			<version>6.1.7.Final</version>
 		</dependency>
 
-		<!-- Security -->
+		<!-- Security-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
